@@ -1,17 +1,19 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import rdk from '$lib/assets/rickdaltmanpoint.png';
+	import logo from '$lib/assets/logo.svg';
 	import Button from '$lib/components/Button.svelte';
 </script>
 
 <main style:background={`url("${rdk}")`}>
 	<div class="content">
-		<img src={'logo.svg'} alt="logo.svg" />
+		<img src={logo} alt="logo.svg" />
 		<div class="text">
 			<h1>Witamy w GO Cinema!</h1>
 			<h3>
 				Jesteśmy tymi, kto zrobi wyszukiwania kina przyjemniejszym od samego ich przeglądania!
 			</h3>
-			<Button icon="fa-film" onClick={() => console.log('Catalog')}>Katalog</Button>
+			<Button icon="fa-film" onClick={() => goto('/movies')}>Katalog</Button>
 		</div>
 	</div>
 </main>
@@ -48,4 +50,3 @@
 		}
 	}
 </style>
-

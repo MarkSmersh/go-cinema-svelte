@@ -4,13 +4,14 @@
 	interface Props {
 		name: string;
 		size?: number;
+		color?: string;
 		children?: Snippet;
 	}
 
-	const { name, size, children }: Props = $props();
+	const { name, color, size, children }: Props = $props();
 </script>
 
-<i style:font-size={`${size || 20}px`} class={`fas ${name}`}>
+<i style:color style:font-size={`${size || 20}px`} class={`fas ${name}`}>
 	{#if children}
 		{@render children()}
 	{/if}

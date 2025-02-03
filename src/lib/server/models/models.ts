@@ -34,6 +34,9 @@ export class Rating {
 	@ManyToOne(() => Movie)
 	movie!: Movie;
 
+	@Property({ type: 'int' })
+	value!: number;
+
 	@Property()
 	createdAt = new Date();
 }
@@ -89,8 +92,9 @@ export class PlaceType {
 	price!: number;
 }
 
+@Entity()
 export class Ticket {
-	@PrimaryKey({ type: 'int' })
+	@PrimaryKey({ type: 'uuid' })
 	id!: number;
 
 	@OneToOne(() => Place)
@@ -103,6 +107,7 @@ export class Ticket {
 	createdAt = new Date();
 }
 
+@Entity()
 export class Contact {
 	@PrimaryKey({ type: 'int' })
 	id!: number;

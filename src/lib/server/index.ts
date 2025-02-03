@@ -1,3 +1,3 @@
 export { orm, em } from './db';
 
-export { User, Cart, Product } from './models/models';
+export { Movie, PlaceType, Contact, Ticket, Rating, Cinema, Place } from './models/models';

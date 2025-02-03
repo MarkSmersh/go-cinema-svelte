@@ -21,12 +21,7 @@
 			icon="fa-circle-info"
 			onClick={() => console.log('Opens info')}
 		/>
-		<Button
-			isSquare
-			type="secondary"
-			icon="fa-film"
-			onClick={() => console.log('Opens movie catalog')}
-		/>
+		<Button isSquare type="secondary" icon="fa-film" onClick={() => goto('/movies')} />
 		<Button
 			isSquare
 			type="secondary"
@@ -47,5 +42,6 @@
 		gap: 8px;
 		height: 60px;
 		width: calc(100% - 32px);
+		z-index: 69;
 	}
 </style>

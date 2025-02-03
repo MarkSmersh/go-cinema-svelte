@@ -24,7 +24,7 @@
 				<Icon
 					name="fa-star"
 					size={18}
-					color={hoverStar >= v ? '#FFBB00' : v < value ? '#FFBB00' : 'grey'}
+					color={hoverStar >= v ? '#FFBB00' : v <= value ? '#FFBB00' : 'grey'}
 				/>
 			</button>
 		</div>

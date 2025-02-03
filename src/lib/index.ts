@@ -5,8 +5,6 @@ export async function request(
 	method: 'GET' | 'POST' | 'PATCH' | 'DELETE' = 'GET',
 	body: string | null = null
 ) {
-	console.log('123');
-
 	const res = await fetch(url, {
 		method: method,
 		headers: body
@@ -18,9 +16,6 @@ export async function request(
 	});
 
 	const text = await res.text();
-
-	console.log('text: ');
-	console.log(res.status);
 
 	createNotify({
 		message: text,

@@ -2,6 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import Notify from '$lib/components/Notify.svelte';
 
 	interface Props {
 		children: Snippet;
@@ -11,6 +12,7 @@
 </script>
 
 <Header />
+<Notify />
 {@render children()}
 <Footer />
 

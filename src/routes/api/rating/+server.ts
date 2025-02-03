@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { em, Rating, Movie } from '$lib/server';
 
@@ -6,8 +5,9 @@ export const POST: RequestHandler = async ({ request }) => {
 	const ratingData: RatingData = await request.json();
 
 	if (ratingData.movie === undefined || ratingData.movie === null || !ratingData.value)
-		error(400, 'Żądanie nie zawiera jednego lub wielu atrybutów: movie, value');
-
+		return new Response('Miemożliwe wystawiać ocenę: ocena muszi być 1, 2, 3, 4 lub 5', {
+			status: 400
+		});
 	console.log(ratingData.value);
 
 	if (
@@ -17,13 +17,15 @@ export const POST: RequestHandler = async ({ request }) => {
 		ratingData.value !== 4 &&
 		ratingData.value !== 5
 	) {
-		error(400, 'Miemożliwe wystawiać ocenę: ocena muszi być 1, 2, 3, 4 lub 5');
+		return new Response('Miemożliwe wystawiać ocenę: ocena muszi być 1, 2, 3, 4 lub 5', {
+			status: 400
+		});
 	}
 
 	const movie = await em.findOne(Movie, ratingData.movie);
 
 	if (!movie) {
-		error(400, 'Miemożliwe wystawiać ocenę: za podanym ID nie ma filmu');
+		return new Response('Miemożliwe wystawiać ocenę: za podanym ID nie ma filmu', { status: 400 });
 	}
 
 	const newRating = em.create(Rating, {

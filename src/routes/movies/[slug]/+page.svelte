@@ -2,13 +2,30 @@
 	import type { PageProps } from './$types';
 	import dummy from '$lib/assets/dummy.jpg';
 	import Rating from '$lib/components/Rating.svelte';
-	import { slide } from 'svelte/transition';
+	import Pagination from '$lib/components/Pagination.svelte';
 
-	async function sendRating(r: number) {
-		console.log(r);
+	import { slide } from 'svelte/transition';
+	import { request } from '$lib';
+	import { goto, invalidateAll } from '$app/navigation';
+
+	async function sendRating(m: number, r: number) {
+		await request(
+			'/api/rating',
+			'POST',
+			JSON.stringify({
+				movie: m,
+				value: r
+			})
+		);
+
+		await invalidateAll();
 	}
 
 	let { data }: PageProps = $props();
+
+	function pagination(step: number) {
+		goto(`/movies/${step}`);
+	}
 
 	let movieHover = $state(0);
 </script>
@@ -17,11 +34,13 @@
 	<div class="movies">
 		{#each data.movies as m}
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions (because of reasons) -->
 			<div
 				onmouseenter={() => (movieHover = m.id)}
 				onmouseleave={() => (movieHover = 0)}
 				style:background={`url(${dummy})`}
 				class="movie"
+				onclick={() => goto(`/movie/${m.id}`)}
 			>
 				<div class:open={movieHover === m.id} class="info">
 					<div class="text">
@@ -31,11 +50,16 @@
 						{/if}
 						<p>Rok: {m.year}</p>
 					</div>
-					<Rating onClick={(r) => sendRating(r)} count={m.rates} value={m.rating} />
+					<Rating onClick={(r) => sendRating(m.id, r)} count={m.rates} value={m.rating} />
 				</div>
 			</div>
 		{/each}
 	</div>
+	<Pagination
+		slug={data.slug}
+		steps={Math.ceil(data.count / data.step)}
+		onStep={(s) => pagination(s)}
+	/>
 </main>
 
 <style>

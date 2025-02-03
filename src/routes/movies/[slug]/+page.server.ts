@@ -4,7 +4,8 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const slug = parseInt(params.slug);
-	const offset = 12 * slug;
+	const step = 12;
+	const offset = step * slug;
 
 	const moviesDb = await em.find(
 		Movie,
@@ -12,13 +13,16 @@ export const load: PageServerLoad = async ({ params }) => {
 		{
 			limit: 12,
 			offset: offset,
-			populate: ['ratings.value']
+			populate: ['ratings.value'],
+			orderBy: {
+				id: 'ASC'
+			}
 		}
 	);
 
 	console.log(moviesDb);
 
-	const count = em.count(Movie);
+	const count = await em.count(Movie);
 
 	if (moviesDb.length === 0) {
 		error(400, 'Za dużo poszedł');
@@ -43,6 +47,8 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	return {
 		movies: movies,
-		count: count
+		count: count,
+		step: step,
+		slug: slug
 	};
 };

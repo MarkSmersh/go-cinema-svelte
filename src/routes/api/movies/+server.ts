@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { em, Movie } from '$lib/server';
 
@@ -8,16 +7,16 @@ export const POST: RequestHandler = async ({ request }) => {
 	let counter = 0;
 
 	if (movies.length === 0) {
-		error(400, 'Żadanie jest nieprawidlowe.');
+		return new Response('Żądanie jest nieprawidlowe', { status: 400 });
 	}
 
 	movies.forEach((m) => {
 		counter++;
 
 		if (!m.title || !m.description || !m.year)
-			error(
-				400,
-				`W wierszu #${counter} brakuje jednego lub wiele atrybutów. W wierszu muszą być następne atrybuty: title, description, year`
+			return new Response(
+				`W wierszu #${counter} brakuje jednego lub wiele atrybutów. W wierszu muszą być następne atrybuty: title, description, year`,
+				{ status: 400 }
 			);
 
 		const movie = em.create(Movie, {

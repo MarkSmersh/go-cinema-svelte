@@ -52,6 +52,9 @@ export class Cinema {
 	@Property({ type: 'string' })
 	description!: string;
 
+	@Property({ type: 'int' })
+	width!: number;
+
 	@OneToMany(() => Place, 'cinema', { orphanRemoval: true })
 	places = new Collection<Place>(this);
 }
@@ -67,8 +70,8 @@ export class Place {
 	@ManyToOne(() => PlaceType)
 	placeType!: PlaceType;
 
-	@OneToOne(() => Ticket)
-	ticket!: Ticket;
+	@OneToOne(() => Ticket, { nullable: true })
+	ticket?: Ticket | null = null;
 
 	@Property({ type: 'int' })
 	col!: number;
@@ -86,7 +89,7 @@ export class PlaceType {
 	description!: string;
 
 	@OneToMany(() => Place, 'placeType', { orphanRemoval: true })
-	place = new Collection<Place>(this);
+	places = new Collection<Place>(this);
 
 	@Property({ type: 'int' })
 	price!: number;
@@ -95,7 +98,7 @@ export class PlaceType {
 @Entity()
 export class Ticket {
 	@PrimaryKey({ type: 'uuid' })
-	id!: number;
+	id!: string;
 
 	@OneToOne(() => Place)
 	place!: Place;
@@ -103,7 +106,7 @@ export class Ticket {
 	@OneToOne(() => Contact)
 	contact!: Contact;
 
-	@Property({ type: 'date' })
+	@Property()
 	createdAt = new Date();
 }
 
@@ -118,6 +121,9 @@ export class Contact {
 	@Property({ type: 'string' })
 	surname!: string;
 
-	@OneToOne(() => Ticket)
-	ticket!: Ticket;
+	@Property({ type: 'string' })
+	phoneNumber!: string;
+
+	// @OneToOne(() => Ticket, { nullable: true })
+	// ticket?: Ticket | null = null;
 }

@@ -41,6 +41,7 @@
 		align-items: center;
 		gap: 8px;
 		font-weight: 600;
+		transition-property: none;
 	}
 
 	.primary {

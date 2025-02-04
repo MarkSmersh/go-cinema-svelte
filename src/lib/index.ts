@@ -1,4 +1,5 @@
 import { createNotify } from './notify';
+import { invalidateAll } from '$app/navigation';
 
 export async function request(
 	url: string,
@@ -23,4 +24,17 @@ export async function request(
 	});
 
 	return res;
+}
+
+export async function sendRating(m: number, r: number) {
+	await request(
+		'/api/rating',
+		'POST',
+		JSON.stringify({
+			movie: m,
+			value: r
+		})
+	);
+
+	await invalidateAll();
 }

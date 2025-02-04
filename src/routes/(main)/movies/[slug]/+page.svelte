@@ -3,29 +3,15 @@
 	import dummy from '$lib/assets/dummy.jpg';
 	import Rating from '$lib/components/Rating.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
-
 	import { slide } from 'svelte/transition';
-	import { request } from '$lib';
-	import { goto, invalidateAll } from '$app/navigation';
-
-	async function sendRating(m: number, r: number) {
-		await request(
-			'/api/rating',
-			'POST',
-			JSON.stringify({
-				movie: m,
-				value: r
-			})
-		);
-
-		await invalidateAll();
-	}
-
-	let { data }: PageProps = $props();
+	import { goto } from '$app/navigation';
+	import { sendRating } from '$lib/index';
 
 	function pagination(step: number) {
 		goto(`/movies/${step}`);
 	}
+
+	let { data }: PageProps = $props();
 
 	let movieHover = $state(0);
 </script>

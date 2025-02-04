@@ -4,6 +4,7 @@
 	import Rating from '$lib/components/Rating.svelte';
 	import { sendRating } from '$lib';
 	import Button from '$lib/components/Button.svelte';
+	import { goto } from '$app/navigation';
 
 	let { data }: PageProps = $props();
 </script>
@@ -19,7 +20,9 @@
 			</div>
 			<p>{data.description}</p>
 		</div>
-		<Button icon="fa-ticket" onClick={() => console.log('Buy bilet')}>Kup bilet od 0 do 1</Button>
+		<Button icon="fa-ticket" onClick={() => goto(`/movie/${data.id}/reservation`)}
+			>Kup bilet od 0 do 1</Button
+		>
 	</div>
 </main>
 

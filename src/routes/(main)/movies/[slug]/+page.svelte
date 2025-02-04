@@ -51,6 +51,9 @@
 <style>
 	main {
 		padding: 100px;
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
 	}
 
 	.movies {

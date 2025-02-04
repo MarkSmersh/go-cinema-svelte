@@ -37,6 +37,7 @@
 		display: flex;
 		gap: 2px;
 		align-items: center;
+		flex: 0;
 
 		.value {
 			font-weight: 600;

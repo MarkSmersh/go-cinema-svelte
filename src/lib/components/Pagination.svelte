@@ -30,14 +30,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 50px 0px;
 	}
 
 	.pagination {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		width: 70%;
 		gap: 8px;
 	}
 

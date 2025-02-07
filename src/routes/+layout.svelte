@@ -28,6 +28,8 @@
 		border: 0;
 
 		transition: 0.2s;
+
+		scroll-behavior: smooth;
 	}
 
 	:global(body) {

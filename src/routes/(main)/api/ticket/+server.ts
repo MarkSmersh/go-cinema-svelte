@@ -24,6 +24,10 @@ export const POST: RequestHandler = async ({ request }) => {
 		return new Response('Niemożliwe stworzyć bilet: brak miejśca z podanym ID', { status: 400 });
 	}
 
+	if (place.ticket) {
+		return new Response('Niemożliwe stworzyć bilet: miejsce jest już zajęte', { status: 400 });
+	}
+
 	const contact = em.create(Contact, {
 		firstName: ticketData.firstname,
 		surname: ticketData.surname,
@@ -34,10 +38,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	const ticket = em.create(Ticket, {
 		id: crypto.randomUUID(),
-		place: place,
+		place: em.getReference(Place, place.id),
 		contact: contact,
 		createdAt: new Date()
 	});
+
+	place.ticket = ticket;
 
 	em.persistAndFlush(ticket);
 

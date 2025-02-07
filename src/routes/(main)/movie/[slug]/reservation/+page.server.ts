@@ -4,10 +4,17 @@ import type { PageServerLoad } from './$types';
 import { Cinema } from '$lib/server';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const cinemasData = await em.findAll(Cinema, { populate: ['places.placeType'] });
+	const cinemasData = await em.findAll(Cinema, { populate: ['places.placeType', 'places.ticket'] });
 
 	const cinemas = cinemasData.map((c) => {
-		let places: { id: number; description: string; price: number }[][] = [];
+		let places: {
+			id: number;
+			description: string;
+			price: number;
+			col: number;
+			row: number;
+			isBusy: boolean;
+		}[][] = [];
 
 		c.places
 			.getItems()
@@ -22,7 +29,10 @@ export const load: PageServerLoad = async ({ params }) => {
 				places[p.row].push({
 					id: p.id,
 					description: p.placeType.description,
-					price: p.placeType.price
+					price: p.placeType.price,
+					col: p.col,
+					row: p.row,
+					isBusy: p.ticket !== undefined && p.ticket !== null
 				});
 			});
 

@@ -21,7 +21,7 @@
 			<p>{data.description}</p>
 		</div>
 		<Button icon="fa-ticket" onClick={() => goto(`/movie/${data.id}/reservation`)}
-			>Kup bilet od 0 do 1</Button
+			>Kup bilet od {data.from} zł do {data.to} zł</Button
 		>
 	</div>
 </main>

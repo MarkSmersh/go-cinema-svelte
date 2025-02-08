@@ -154,7 +154,7 @@
 					<div class="info">
 						<h1>Podsumowanie</h1>
 						<h3>Film: {data.title} (rok: {data.year})</h3>
-						<h3>Cinema: {data.cinemas[cinemaId].title}</h3>
+						<h3>Kinoteatr: {data.cinemas[cinemaId].title}</h3>
 						{#if place}
 							<h2>Miesjce:</h2>
 							<h3>Kolumna: {place.col}</h3>

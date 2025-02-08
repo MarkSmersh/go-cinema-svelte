@@ -3,17 +3,36 @@
 	import { isSearch } from '$lib/state';
 	import Button from './Button.svelte';
 	import Search from './Search.svelte';
+	import SearchModal from './SearchModal.svelte';
+
+	interface Movie {
+		id: number;
+		title: string;
+		year: number;
+		description: string;
+		rating: string;
+	}
 
 	let isActive: boolean = $state(false);
 
+	let movies: Movie[] | never[] = $state([]);
+
 	isSearch.subscribe((s) => (isActive = s));
+
+	async function searchFilm(q: string) {
+		const res: Movie[] = await (await fetch(`/api/search/${q}`)).json();
+
+		console.log(res);
+
+		movies = res;
+	}
 </script>
 
 <header>
 	{#if !isActive}
 		<Button isSquare type="secondary" icon="fa-home" onClick={() => goto('/')} />
 	{/if}
-	<Search />
+	<Search onInput={(v) => searchFilm(v)} />
 	{#if !isActive}
 		<Button
 			isSquare
@@ -29,6 +48,7 @@
 			onClick={() => console.log('Should open some window')}
 		/>
 	{/if}
+	<SearchModal {movies} onSelect={() => console.log('da')} />
 </header>
 
 <style>

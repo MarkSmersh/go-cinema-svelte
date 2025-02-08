@@ -2,6 +2,12 @@
 	import { isSearch } from '$lib/state';
 	import Icon from './Icon.svelte';
 
+	interface Props {
+		onInput: (v: string) => void;
+	}
+
+	let { onInput }: Props = $props();
+
 	let input: HTMLInputElement | undefined = $state();
 	let isActive: boolean = $state(false);
 
@@ -25,6 +31,7 @@
 		onfocusin={() => isSearch.update((s) => (s = true))}
 		bind:this={input}
 		placeholder="Wyszukiwanie..."
+		oninput={(e) => onInput(e.currentTarget.value)}
 	/>
 </div>
 

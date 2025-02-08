@@ -18,7 +18,7 @@
 				<h2>{data.cinema}</h2>
 			</div>
 			<div class="text">
-				<h1>Miejśce</h1>
+				<h1>Miejsce</h1>
 				<h2>Wiersz: {data.row}</h2>
 				<h2>Kolumna: {data.col}</h2>
 			</div>
@@ -30,7 +30,7 @@
 			</div>
 			<div class="text">
 				<h1>Data</h1>
-				<h2>Dzien: {data.createdAt.toLocaleDateString('pl-PL', { dateStyle: 'full' })}</h2>
+				<h2>Dzień: {data.createdAt.toLocaleDateString('pl-PL', { dateStyle: 'full' })}</h2>
 				<h2>Czas: {data.createdAt.toLocaleTimeString('pl-PL', { timeStyle: 'long' })}</h2>
 			</div>
 		</div>

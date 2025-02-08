@@ -1,5 +1,5 @@
 <script lang="ts">
-	import dummy from '$lib/assets/dummy.jpg';
+	import placeholder from '$lib/assets/placeholder.png';
 	import { isSearch } from '$lib/state';
 	import Icon from './Icon.svelte';
 	import { blur, slide } from 'svelte/transition';
@@ -35,7 +35,7 @@
 				class="movie"
 				onclick={() => onSelect(m)}
 			>
-				<img src={dummy} alt="dummy.jpg" />
+				<img src={placeholder} alt="dummy.jpg" />
 				<div class="info">
 					<h2>{m.title} ({m.year})</h2>
 					<p>{m.description}</p>

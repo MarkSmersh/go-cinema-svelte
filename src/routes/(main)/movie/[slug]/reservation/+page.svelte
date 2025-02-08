@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
 	import cinemaImg from '$lib/assets/cinema.jpg';
-	import movieImg from '$lib/assets/dummy.jpg';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import Rating from '$lib/components/Rating.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import { request } from '$lib';
 	import { goto } from '$app/navigation';
+	import placeholder from '$lib/assets/placeholder.png';
 
 	let { data }: PageProps = $props();
 	let cinemaId: number = $state(0);
@@ -56,7 +56,7 @@
 
 <main>
 	<div>
-		<div id="slide-1" style:background={`url(${movieImg})`} class="movie">
+		<div id="slide-1" style:background={`url(${placeholder})`} class="movie">
 			<div class="text">
 				<h1>{data.title}</h1>
 				<p>{data.description}</p>

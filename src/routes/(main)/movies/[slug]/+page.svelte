@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
-	import dummy from '$lib/assets/dummy.jpg';
+	import placeholder from '$lib/assets/placeholder.png';
 	import Rating from '$lib/components/Rating.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import { slide } from 'svelte/transition';
@@ -24,7 +24,7 @@
 			<div
 				onmouseenter={() => (movieHover = m.id)}
 				onmouseleave={() => (movieHover = 0)}
-				style:background={`url(${dummy})`}
+				style:background={`url(${placeholder})`}
 				class="movie"
 				onclick={() => goto(`/movie/${m.id}`)}
 			>

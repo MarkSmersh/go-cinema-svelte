@@ -1,16 +1,15 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
-	import dummy from '$lib/assets/dummy.jpg';
 	import Rating from '$lib/components/Rating.svelte';
 	import { sendRating } from '$lib';
 	import Button from '$lib/components/Button.svelte';
 	import { goto } from '$app/navigation';
-
+	import placeholder from '$lib/assets/placeholder.png';
 	let { data }: PageProps = $props();
 </script>
 
 <main>
-	<img src={dummy} alt="dummy.jpg" />
+	<img src={placeholder} alt="dummy.jpg" />
 	<div class="content">
 		<div class="text">
 			<h1>{data.title}</h1>
@@ -39,6 +38,8 @@
 	img {
 		height: 100%;
 		border-radius: var(--br);
+		aspect-ratio: 3 / 4;
+		object-fit: cover;
 	}
 
 	.content {

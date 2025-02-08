@@ -1,6 +1,11 @@
 import { createNotify } from './notify';
 import { invalidateAll } from '$app/navigation';
 
+export interface LocalTicket {
+	id: string;
+	date: Date;
+}
+
 export async function request(
 	url: string,
 	method: 'GET' | 'POST' | 'PATCH' | 'DELETE' = 'GET',

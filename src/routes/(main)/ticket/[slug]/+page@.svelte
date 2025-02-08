@@ -1,9 +1,26 @@
 <script lang="ts">
 	import type { PageProps } from './$types';
 	import logo from '$lib/assets/logo.svg';
+	import { onMount } from 'svelte';
+	import type { LocalTicket } from '$lib';
 
 	let { data }: PageProps = $props();
 	let ticket: HTMLDivElement | null = $state(null);
+
+	onMount(() => {
+		let tickets: LocalTicket[] | null = JSON.parse(localStorage.getItem('tickets') as string);
+
+		if (!tickets) {
+			tickets = [];
+		}
+
+		tickets.push({
+			id: data.id,
+			date: data.createdAt
+		});
+
+		localStorage.setItem('tickets', JSON.stringify(tickets));
+	});
 </script>
 
 <main>

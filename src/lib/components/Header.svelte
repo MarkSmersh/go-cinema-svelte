@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { isSearch } from '$lib/state';
+	import { isInfo, isSearch, isTickets } from '$lib/state';
 	import Button from './Button.svelte';
+	import InfoModal from './InfoModal.svelte';
 	import Search from './Search.svelte';
-	import SearchModal from './SearchModal.svelte';
+	import SearchList from './SearchList.svelte';
 
 	interface Movie {
 		id: number;
@@ -51,17 +52,18 @@
 			isSquare
 			type="secondary"
 			icon="fa-circle-info"
-			onClick={() => console.log('Opens info')}
+			onClick={() => isInfo.update((s) => !s)}
 		/>
 		<Button isSquare type="secondary" icon="fa-film" onClick={() => goto('/movies')} />
 		<Button
 			isSquare
 			type="secondary"
 			icon="fa-ticket"
-			onClick={() => console.log('Should open some window')}
+			onClick={() => isTickets.update((t) => !t)}
 		/>
 	{/if}
-	<SearchModal {movies} onSelect={(m) => goToMovie(m)} />
+	<SearchList {movies} onSelect={(m) => goToMovie(m)} />
+	<InfoModal />
 </header>
 
 <style>

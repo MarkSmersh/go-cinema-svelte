@@ -4,15 +4,15 @@ import type { RequestHandler } from './$types';
 export const GET: RequestHandler = async ({ params }) => {
 	const slug = params.slug;
 
-	const moviesDb = await em.find(
-		Movie,
-		{
+	const moviesDb = await em.findAll(Movie, {
+		where: {
 			title: {
-				$ilike: slug
+				$ilike: `%${slug}%`
 			}
 		},
-		{ limit: 10 }
-	);
+		populate: ['ratings'],
+		limit: 10
+	});
 
 	const movies = moviesDb.map((m) => {
 		let rating = 0;

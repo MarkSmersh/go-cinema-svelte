@@ -17,6 +17,8 @@
 
 	let movies: Movie[] | never[] = $state([]);
 
+	let q: string = $state('');
+
 	isSearch.subscribe((s) => (isActive = s));
 
 	async function searchFilm(q: string) {
@@ -24,8 +26,19 @@
 
 		console.log(res);
 
-		movies = res;
+		if (res.length === 0 || q.length === 0) {
+			movies = [];
+		} else {
+			movies = res;
+		}
 	}
+
+	function goToMovie(m: Movie) {
+		isSearch.update((s) => (s = false));
+		goto(`/movie/${m.id}`);
+	}
+
+	$inspect(q);
 </script>
 
 <header>
@@ -48,7 +61,7 @@
 			onClick={() => console.log('Should open some window')}
 		/>
 	{/if}
-	<SearchModal {movies} onSelect={() => console.log('da')} />
+	<SearchModal {movies} onSelect={(m) => goToMovie(m)} />
 </header>
 
 <style>

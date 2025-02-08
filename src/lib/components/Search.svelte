@@ -18,17 +18,14 @@
 			input?.focus();
 		}
 	});
-
-	$inspect(isActive);
 </script>
 
 <div class="search">
-	<button onclick={() => isSearch.update((s) => (s = true))}>
+	<button class:active={isActive} onclick={() => isSearch.update((s) => (s = !s))}>
 		<Icon name="fa-search" />
 	</button>
 	<input
-		onfocusout={() => isSearch.update((s) => (s = false))}
-		onfocusin={() => isSearch.update((s) => (s = true))}
+		onfocus={() => (!isActive ? input?.blur() : null)}
 		bind:this={input}
 		placeholder="Wyszukiwanie..."
 		oninput={(e) => onInput(e.currentTarget.value)}
@@ -55,6 +52,10 @@
 	}
 
 	button:hover {
+		background-color: var(--primary);
+	}
+
+	.active {
 		background-color: var(--primary);
 	}
 

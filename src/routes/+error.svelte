@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import logo from '$lib/assets/logo.svg';
+	import Header from '$lib/components/Header.svelte';
 </script>
 
+<Header />
 <main>
 	<div class="text">
 		<h1>{page.status}</h1>

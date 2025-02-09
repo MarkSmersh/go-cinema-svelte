@@ -62,4 +62,19 @@
 			gap: 8px;
 		}
 	}
+
+	@media screen and (max-width: 800px) {
+		main {
+			padding: 100px 10px;
+			flex-direction: column;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		.content {
+			gap: 32px;
+		}
+	}
 </style>

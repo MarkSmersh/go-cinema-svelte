@@ -49,4 +49,17 @@
 			gap: 16px;
 		}
 	}
+
+	@media screen and (max-width: 800px) {
+		.content {
+			padding: 20px;
+			margin: 10px;
+			width: calc(100% - 60px);
+			flex-direction: column;
+
+			img {
+				width: 100%;
+			}
+		}
+	}
 </style>

@@ -65,4 +65,11 @@
 		background: var(--primary);
 		border-radius: var(--br);
 	}
+
+	@media screen and (max-width: 800px) {
+		.modal {
+			width: calc(100% - 64px);
+			aspect-ratio: 1 / 1.5;
+		}
+	}
 </style>

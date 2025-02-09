@@ -122,4 +122,10 @@
 			}
 		}
 	}
+
+	@media screen and (max-width: 800px) {
+		.ticket {
+			width: 100%;
+		}
+	}
 </style>

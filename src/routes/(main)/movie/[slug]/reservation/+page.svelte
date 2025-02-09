@@ -56,7 +56,7 @@
 
 <main>
 	<div>
-		<div id="slide-1" style:background={`url(${placeholder})`} class="movie">
+		<div style:background={`url(${placeholder})`} class="movie">
 			<div class="text">
 				<h1>{data.title}</h1>
 				<p>{data.description}</p>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="slide-2" style:background={`url(${cinemaImg})`} class="cinemas">
+		<div style:background={`url(${cinemaImg})`} class="cinemas">
 			<div class="text">
 				<h1>{data.cinemas[cinemaId].title}</h1>
 				<p>{data.cinemas[cinemaId].description}</p>
@@ -77,7 +77,7 @@
 				<Pagination slug={cinemaId} steps={data.cinemas.length} onStep={(s) => setCinema(s)} />
 			</div>
 		</div>
-		<div id="slide-3" class="place-selector">
+		<div class="place-selector">
 			<div class="cinema">
 				<div class="places">
 					{#each data.cinemas[cinemaId].places as r}
@@ -116,7 +116,7 @@
 				{/if}
 			</div>
 		</div>
-		<div id="slide-4" class="contact">
+		<div class="contact">
 			<form onsubmit={(e) => createTicket(e)}>
 				<div class="inputs">
 					<label>
@@ -366,6 +366,35 @@
 
 				button:hover {
 					background: var(--secondary);
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		.place-selector {
+			height: fit-content;
+			display: flex;
+			flex-direction: column;
+			padding: 50px 10px;
+
+			.cinema {
+				height: fit-content;
+				/*TODO: Solve it in more appropriate way*/
+				scale: 80%;
+			}
+		}
+
+		.contact {
+			padding: 50px 10px;
+
+			form {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+
+				.summary {
+					gap: 32px;
 				}
 			}
 		}

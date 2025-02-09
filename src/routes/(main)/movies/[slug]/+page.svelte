@@ -65,7 +65,7 @@
 	.movie {
 		background-position: center !important;
 		background-size: cover !important;
-		aspect-ratio: 5 / 7;
+		aspect-ratio: 4 / 7;
 		border-radius: var(--br);
 		display: flex;
 		flex-direction: column;
@@ -97,5 +97,21 @@
 
 	.open {
 		height: 100%;
+	}
+
+	@media screen and (max-width: 1200px) {
+		.movies {
+			grid: auto / repeat(3, 1fr);
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		main {
+			padding: 100px 10px;
+		}
+
+		.movies {
+			grid: auto / repeat(1, 1fr);
+		}
 	}
 </style>

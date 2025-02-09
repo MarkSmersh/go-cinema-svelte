@@ -14,10 +14,12 @@
 			tickets = [];
 		}
 
-		tickets.push({
-			id: data.id,
-			date: data.createdAt
-		});
+		if (!tickets.find((t) => t.id === data.id)) {
+			tickets.push({
+				id: data.id,
+				date: data.createdAt.toString()
+			});
+		}
 
 		localStorage.setItem('tickets', JSON.stringify(tickets));
 	});
@@ -65,10 +67,6 @@
 		height: 100vh;
 	}
 
-	:global(*) {
-		font-family: 'Courier New', Courier, monospace;
-	}
-
 	.ticket {
 		aspect-ratio: 3 / 4;
 		height: calc(100% - 64px - 4px);
@@ -80,6 +78,10 @@
 		padding: 32px 0px;
 		gap: 16px;
 		border: 2px dashed var(--secondary);
+
+		p {
+			font-family: 'Courier New', Courier, monospace;
+		}
 
 		.logo {
 			background-color: var(--primary);
@@ -110,11 +112,13 @@
 			h1 {
 				font-weight: 600;
 				font-size: 24px;
+				font-family: 'Courier New', Courier, monospace;
 			}
 
 			h2 {
 				font-weight: 500;
 				font-size: 20px;
+				font-family: 'Courier New', Courier, monospace;
 			}
 		}
 	}

@@ -17,7 +17,7 @@
 		<div class="controls">
 			<Button isSquare icon={'fa-xmark'} onClick={() => onClose()} />
 		</div>
-		<div class="content">
+		<div class="children">
 			{@render children()}
 		</div>
 	</div>
@@ -34,8 +34,11 @@
 		border: 2px solid var(--primary);
 		width: 60%;
 		aspect-ratio: 2 / 1;
+		max-height: fit-content;
 		padding: 16px;
 		color: var(--secondary-text);
+		overflow-y: scroll;
+		overflow-x: hidden;
 	}
 
 	.controls {
@@ -44,5 +47,22 @@
 		right: 10px;
 		aspect-ratio: 1 / 1;
 		display: flex;
+	}
+
+	/* width */
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: var(--secondary);
+		border-radius: var(--br);
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: var(--primary);
+		border-radius: var(--br);
 	}
 </style>

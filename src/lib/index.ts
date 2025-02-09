@@ -3,7 +3,7 @@ import { invalidateAll } from '$app/navigation';
 
 export interface LocalTicket {
 	id: string;
-	date: Date;
+	date: string;
 }
 
 export async function request(

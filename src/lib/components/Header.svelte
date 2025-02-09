@@ -5,6 +5,7 @@
 	import InfoModal from './InfoModal.svelte';
 	import Search from './Search.svelte';
 	import SearchList from './SearchList.svelte';
+	import TicketsModal from './TicketsModal.svelte';
 
 	interface Movie {
 		id: number;
@@ -64,6 +65,7 @@
 	{/if}
 	<SearchList {movies} onSelect={(m) => goToMovie(m)} />
 	<InfoModal />
+	<TicketsModal />
 </header>
 
 <style>
